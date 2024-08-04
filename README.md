@@ -1,6 +1,6 @@
 ## Rf Payroll
 
-fix Payroll laon deduction issue
+fix Payroll loan deduction issue
 
 #### License
 
