@@ -1,11 +1,12 @@
 import frappe
 from frappe.utils import flt
 from hrms.payroll.doctype.payroll_entry.payroll_entry import PayrollEntry
-from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
+# from hrms.payroll.doctype.salary_withholding.salary_withholding import link_bank_entry_in_salary_withholdings
 from frappe.query_builder.functions import Sum
 
 
 class OvrPayrollEntry(PayrollEntry):
+
     @frappe.whitelist()
     def make_bank_entry(self, for_withheld_salaries=False):
         self.check_permission("write")
@@ -71,8 +72,8 @@ class OvrPayrollEntry(PayrollEntry):
             remark = "withheld salaries" if for_withheld_salaries else "salaries"
             bank_entry = self.set_accounting_entries_for_bank_entry(salary_slip_total, remark)
 
-        if for_withheld_salaries:
-            link_bank_entry_in_salary_withholdings(salary_slips, bank_entry.name)
+        # if for_withheld_salaries:
+        #     link_bank_entry_in_salary_withholdings(salary_slips, bank_entry.name)
 
         return bank_entry
 
